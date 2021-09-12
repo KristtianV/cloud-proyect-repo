@@ -55,12 +55,12 @@ header{
 }
 
 .head-title{
+    width: 50%;
     margin: 0.5rem;
-    justify-content: center;
-    text-align: center;
 }
 
 .head-title h1{
+    text-align: center;
     font-size: 2.3rem;
     color: white;
 }
@@ -75,9 +75,24 @@ header{
     padding-bottom: 10%;
 }
 
+.welcome-container::-webkit-scrollbar {
+    width: 3px;
+    height: 10%;
+}
+
+.welcome-container::-webkit-scrollbar-thumb {
+    background-color: var(--sec);
+    border-radius: 20px; 
+}
+       
+.welcome-container::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0);  
+}
+
 .welcome-container{
     margin: 2rem 0rem;
-    width: 400px;
+    width: 380px;
+    height: 350px;
     color: var(--sec);
     font-size: 30px;
     font-weight: 200;
