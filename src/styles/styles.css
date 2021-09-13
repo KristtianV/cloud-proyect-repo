@@ -164,13 +164,43 @@ header{
     text-align: left;
 }
 
-th,td{
+th{
     padding: 1rem;
     width: 500px;
+    text-align: center;
+}
+
+td{
+    padding: 1rem;
+    width: 500px;
+    border: solid;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 thead{
     color: var(--ter);
+}
+
+.cons-Btn a{
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: var(--ter);
+    text-decoration: none;
+    background-color: white;
+    border-radius: var(--ter);
+    border-radius: 20px;
+    transition: .5s;
+}
+
+.cons-Btn a:hover{
+    background-color: var(--sec);
+}
+
+.cons-Btn{
+    padding: 1rem;
+    border: none;
+    background-color: white;
 }
 
 .form-container{
@@ -274,6 +304,15 @@ thead{
 .form label{
     text-align: center;
     font-size: 20px;
+}
+
+select{
+    margin:20px auto;        
+    border:2px solid var(--ter);
+    height:30px;
+    width: 230px;
+    overflow: hidden;
+    position:relative;
 }
 
 footer ul {
