@@ -16,8 +16,33 @@
     </div>
     <nav class="nav">
         <ul class="ul-start">
-            <li class="li-start"><a href="index.html">Iniciar sesión</a></li>
-            <li class="li-start"><a href="startup.html">Registrarse</a></li>
+            <li class="li-start"><a href="#">Administrar</a>
+                <ul class="drop">
+                    <li><a href="#">Crear Partido</a></li>
+                    <li><a href="#">Aprobar individuo</a></li>
+                    <li><a href="#">Aprobar Proceso</a></li>
+                    <li><a href="#">Aprobar Afiliación</a></li>
+                    <li><a href="#">Habilitar ciudadano</a></li>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Creacion</a>
+                <ul class="drop">
+                    <li><a href="creaIndiv.html">Crear Individuo</a></li>
+                    <li><a href="creaPro.html">Crear Proceso</a></li>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Consulta</a>
+                <ul class="drop">
+                    <li><a href="consIndiv.html">Lista de individuos</a></li>
+                    <li><a href="consPart.html">Lista de Partidos</a></li>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Perfil</a>
+                <ul class="drop">
+                    <li><a href="editPerf.html">Cambiar datos de cuenta</a></li>
+                    <li><a href="index.html">Cerrar sesión</a></li>
+                </ul>
+            </li>
         </ul>
         </div>
     </nav>
@@ -26,10 +51,9 @@
 <body>
     <div class="form-container">
         <div class="welcome-container">
-            <span>Crear cuenta</span>
+            <span>Editar Perfil</span>
             <hr>
-            <p>Llene el formulario de registro</p>
-            <hr>
+            <p>Modifique los campos que desee cambiar</p>
             <div class="forms">
                 <form id="form-log" class="form">
                     <label for="">Usuario</label>

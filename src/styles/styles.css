@@ -16,7 +16,8 @@ body{
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
-    overflow:hidden;
+    overflow-y:auto;
+    overflow-x: hidden;
 }
 
 footer{
@@ -27,7 +28,7 @@ footer{
     text-align: center;
     padding: 0.5rem;
     background-color: var(--pri);
-    height: 10vh;
+    height: 7vh;
     justify-content: center;
     align-items: center;
 }
@@ -38,7 +39,7 @@ li{
 }
 
 header{
-    overflow: hidden;
+    overflow: unset;
 }
 
 .header{
@@ -56,13 +57,120 @@ header{
 
 .head-title{
     width: 50%;
-    margin: 0.5rem;
+    margin: .5rem 0 1.5rem 0;
 }
 
 .head-title h1{
     text-align: center;
     font-size: 2.3rem;
-    color: white;
+    color:var(--ter);
+}
+
+.nav{
+    width: 100vw;
+    height: 50px;
+    overflow: unset;
+}
+
+.nav .ul-start{
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.nav .li-start{
+    float: left;
+}
+
+.nav .li-start a{
+    width: 150px;
+    text-align: center;
+    display: block;
+    color: var(--ter);
+    padding: 0.4rem;
+    transition: .5s;
+}
+
+.nav .li-start a:hover{
+    border-radius: 20px;
+    background-color:var(--ter);
+    color: var(--pri);
+}
+
+.ul-start .li-start .drop {
+    display: none;
+}
+
+.ul-start .li-start:hover {
+    background-color: var(--pri);
+    border-radius: 10px;
+}
+
+.ul-start .li-start:hover .drop{
+    display: contents;
+}
+
+.inf-container{
+    background-color: #41399641;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    top: 25%;
+    padding-bottom: 10%;
+}
+
+.inf::-webkit-scrollbar {
+    width: 3px;
+    height: 10%;
+}
+
+.inf::-webkit-scrollbar-thumb {
+    background-color: var(--sec);
+    border-radius: 20px; 
+}
+       
+.inf::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0);  
+}
+
+.inf{
+    margin-top:4% ;
+    width: 1200px;
+    height: 100%;
+    color: var(--sec);
+    font-size: 30px;
+    font-weight: 200;
+    text-align: center;
+    background: #fff;
+    padding: 10px 30px 10px 30px;
+    border: solid;
+    border-color: var(--pri);
+    overflow: auto;
+}
+
+.inf span {
+    font-size: 3rem;
+    margin: 2rem;
+    display: block;
+}
+
+.inf p {
+    font-size: 18px;
+    color: var(--ter);
+    margin: 10px 0px 0px 0px;
+}
+
+.inf table{
+    text-align: left;
+}
+
+th,td{
+    padding: 1rem;
+    width: 500px;
+}
+
+thead{
+    color: var(--ter);
 }
 
 .form-container{
@@ -92,7 +200,7 @@ header{
 .welcome-container{
     margin: 2rem 0rem;
     width: 380px;
-    height: 350px;
+    height: 380px;
     color: var(--sec);
     font-size: 30px;
     font-weight: 200;
@@ -168,17 +276,18 @@ header{
     font-size: 20px;
 }
 
-
 footer ul {
     justify-content: center;
 }
 
 footer ul li{
+    display: inline;
     list-style: none;
     color: var(--ter);
-    margin: 0px 10px 0px 10px;
+    margin: 0px 5px 0px 5px;
 }
 
 footer ul li a{
+    text-decoration: none;
     color: var(--ter);
 }

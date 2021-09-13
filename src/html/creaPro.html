@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <title></title>
+</head>
+<header class="header">
+    <div class="head-title">
+        <a href="#">
+            <h1>Hechos de Corrupción Gubernamental</h1>
+        </a>
+    </div>
+    <nav class="nav">
+        <ul class="ul-start">
+            <li class="li-start"><a href="#">Administrar</a>
+                <ul class="drop">
+                    <li><a href="#">Crear Partido</a></li>
+                    <li><a href="#">Aprobar individuo</a></li>
+                    <li><a href="#">Aprobar Proceso</a></li>
+                    <li><a href="#">Aprobar Afiliación</a></li>
+                    <li><a href="#">Habilitar ciudadano</a></li>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Creacion</a>
+                <ul class="drop">
+                    <li><a href="creaIndiv.html">Crear Individuo</a></li>
+                    <li><a href="creaPro.html">Crear Proceso</a></li>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Consulta</a>
+                <ul class="drop">
+                    <li><a href="consIndiv.html">Lista de individuos</a></li>
+                    <li><a href="consPart.html">Lista de Partidos</a></li>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Perfil</a>
+                <ul class="drop">
+                    <li><a href="editPerf.html">Cambiar datos de cuenta</a></li>
+                    <li><a href="index.html">Cerrar sesión</a></li>
+                </ul>
+            </li>
+        </ul>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <div class="form-container">
+        <div class="welcome-container">
+            <span>Crear Proceso</span>
+            <hr>
+            <p>Crea un proceso en la plataforma para posteriormente asociar afiliados a partidos políticos</p>
+            <div class="forms">
+                <form id="form-log" class="form">
+                    <label for="">Titulo</label>
+                    <input type="text" name="title" id="title" placeholder="Ingrese titulo" required>
+
+                    <label for="">Fecha de inicio</label>
+                    <input type="date" name="date-start" id="date-start" required>
+
+                    <label for="">Fecha de finalización</label>
+                    <input type="date" name="date-end" id="date-end">
+
+                    <label for="">Proceso abierto</label>
+                    <input type="checkbox" name="state" id="state">
+
+                    <label for="">Entidad</label>
+                    <input type="text" name="entity" id="entity" placeholder="Ingrese la entidad"required>
+
+                    <label for="">Monto</label>
+                    <input type="number" name="howmuch" id="howmuch" placeholder="Ingrese el monto en pesos">
+
+                    <label for="">Comentarios</label>
+                    <input type="text" name="comments" id="comments" placeholder="Añada sus comentarios">
+
+                    <input type="submit" id="butSub" value="Enviar">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<footer>
+    <ul>
+        <li>Profesor: John Alexander Cardozo Ramírez</li>
+        <li><a href="https://www.usta.edu.co">Univesidad Santo Tomás</a></li>
+    </ul>
+</footer>
+
+</html>
