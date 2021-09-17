@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <title></title>
 </head>
 <header class="header">
@@ -18,7 +18,7 @@
         <ul class="ul-start">
             <li class="li-start"><a href="#">Administrar</a>
                 <ul class="drop">
-                    <li><a href="consPart.html">Crear Partido</a></li>
+                    <li><a href="creaPart.html">Crear Partido</a></li>
                     <li><a href="aproInd.html">Aprobar individuo</a></li>
                     <li><a href="aproPro.html">Aprobar Proceso</a></li>
                     <li><a href="aproAfil.html">Aprobar Afiliación</a></li>
@@ -49,19 +49,20 @@
 </header>
 
 <body>
-    <div class="form-container">
-        <div class="welcome-container">
-            <span>Afiliar individuo a partido</span>
-            <hr>
-            <p>Partido Cambio Radical</p>
-            <div class="forms">
-                <form id="form-log" class="form">
-                   <select name="lst-indi" id="lst-indi">
-                        <option>Pepito Perez</option>
-                   </select>
-                   <input type="submit">
-                </form>
-            </div>
+    <div class="inf-container">
+        <div class="inf">
+            <span>Lista de Individuos</span>
+            <p></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre del individuo</th><th>Apellido del individuo</th><th>Estado</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Pepeito</td><td>Perez</td><td>Aprobado <input type="checkbox"></td>
+                </tr>                
+            </table>
         </div>
     </div>
 </body>

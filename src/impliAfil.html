@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <title></title>
 </head>
 <header class="header">
@@ -18,16 +18,16 @@
         <ul class="ul-start">
             <li class="li-start"><a href="#">Administrar</a>
                 <ul class="drop">
-                    <li><a href="#">Crear Partido</a></li>
-                    <li><a href="#">Aprobar individuo</a></li>
-                    <li><a href="#">Aprobar Proceso</a></li>
-                    <li><a href="#">Aprobar Afiliación</a></li>
-                    <li><a href="#">Habilitar ciudadano</a></li>
+                    <li><a href="consPart.html">Crear Partido</a></li>
+                    <li><a href="aproInd.html">Aprobar individuo</a></li>
+                    <li><a href="aproPro.html">Aprobar Proceso</a></li>
+                    <li><a href="aproAfil.html">Aprobar Afiliación</a></li>
+                    <li><a href="habiCiuda.html">Habilitar ciudadano</a></li>
                 </ul>
             </li>
             <li class="li-start"><a href="#">Creacion</a>
                 <ul class="drop">
-                    <li><a href="creaPart.html">Crear Individuo</a></li>
+                    <li><a href="creaIndiv.html">Crear Individuo</a></li>
                     <li><a href="creaPro.html">Crear Proceso</a></li>
                 </ul>
             </li>
@@ -51,27 +51,18 @@
 <body>
     <div class="form-container">
         <div class="welcome-container">
-            <span>Editar Perfil</span>
+            <span>Implicar un afiliado en un proceso</span>
             <hr>
-            <p>Modifique los campos que desee cambiar</p>
+            <p>Pepito Perez</p>
             <div class="forms">
                 <form id="form-log" class="form">
-                    <label for="">Usuario</label>
-                    <input type="text" name="username" id="username" placeholder="Ingrese su usuario" required>
-
-                    <label for="">Contraseña</label>
-                    <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
-                    
-                    <label for="">Correo</label>
-                    <input type="email" name="email" id="email" placeholder="Ingrese su correo" required>
-
-                    <label for="">Nombre</label>
-                    <input type="text" name="name" id="name" placeholder="Ingrese sus Nombres" required>
-
-                    <label for="">Apellidos</label>
-                    <input type="text" name="lastname" id="lastname" placeholder="Ingrese sus Apellidos" required>
-
-                    <input type="submit" id="butSub" value="Enviar">
+                <label for="Proceso"></label>
+                   <select name="lst-pros" id="lst-pros">
+                    <option>Proceso 1</option>
+                    <option>Proceso 2</option>
+                    <option>Proceso 3</option>
+               </select>
+                   <input type="submit">
                 </form>
             </div>
         </div>

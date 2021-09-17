@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <title></title>
 </head>
 <header class="header">
@@ -49,37 +49,20 @@
 </header>
 
 <body>
-    <div class="form-container">
-        <div class="welcome-container">
-            <span>Crear Proceso</span>
-            <hr>
-            <p>Crea un proceso en la plataforma para posteriormente asociar afiliados a partidos políticos</p>
-            <div class="forms">
-                <form id="form-log" class="form">
-                    <label for="">Titulo</label>
-                    <input type="text" name="title" id="title" placeholder="Ingrese titulo" required>
-
-                    <label for="">Fecha de inicio</label>
-                    <input type="date" name="date-start" id="date-start" required>
-
-                    <label for="">Fecha de finalización</label>
-                    <input type="date" name="date-end" id="date-end">
-
-                    <label for="">Proceso abierto</label>
-                    <input type="checkbox" name="state" id="state">
-
-                    <label for="">Entidad</label>
-                    <input type="text" name="entity" id="entity" placeholder="Ingrese la entidad"required>
-
-                    <label for="">Monto</label>
-                    <input type="number" name="howmuch" id="howmuch" placeholder="Ingrese el monto en pesos">
-
-                    <label for="">Comentarios</label>
-                    <input type="text" name="comments" id="comments" placeholder="Añada sus comentarios">
-
-                    <input type="submit" id="butSub" value="Enviar">
-                </form>
-            </div>
+    <div class="inf-container">
+        <div class="inf">
+            <span>Lista de procesos</span>
+            <p></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titulo del Proceso</th><th>Estado</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Proceso 1</td><td>Aprobado <input type="checkbox"></td>
+                </tr>                
+            </table>
         </div>
     </div>
 </body>
