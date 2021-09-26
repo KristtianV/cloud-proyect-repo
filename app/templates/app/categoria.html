@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="{% url 'app:peliculas' %}">Ir a peliculas</a>
+    <a href="{% url 'app:categorias' %}">Ir a categorias</a>
+    <a href="{% url 'app:categoria' 2%}">Ir a categoria</a>
+    
+
+    <h1>UNA CATEGORIA</h1>
+
+    <p>El nombre del actor es {{actor}}</p>
+    {% if esJubilado %}
+        <p>El actor es jubilado</p>
+    {% else %}
+        <p>El actor aun trabaja</p>
+    {% endif %}
+
+    <h2>filmografia del actor</h2>
+
+    <ul>
+        {% for pelicula in filmografia %}
+        <li>{{ pelicula.titulo }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+    <h2>Tabla de peiliculas del actor</h2>
+
+    <table border="1px">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>año</th>
+            </tr>
+            <tbody>
+                {% for movie in filmografia %}
+                <tr>
+                    <td>{{ movie.titulo }}</td>
+                    <td>{{ movie.year }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </thead>
+    </table>
+</body>
+</html>
