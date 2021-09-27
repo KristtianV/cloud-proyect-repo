@@ -1,58 +1,30 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends "app/base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'app/estilo.css' %}">
-    <title>Document</title>
-</head>
 
-<body>
+{% block titulo %}
+Peliculas
+{% endblock %}  
 
-    <div class="contenedor">
-        <header>
-            <div class="logo">
-                BLOCKBUSTER
-            </div>
-            <div class="titulo">
-                Peliculas
-            </div>
-        </header>
-        <nav class="navegacion">
-            <ul>
-                <li><a href="{ % url 'app:peliculas' %">Peliculas</a></li>
-                <li><a href="{ % url 'app:categorias' %"">Categoria</a></li>
-                <li><a href="">salir</a></li>
-            </ul>
-        </nav>
-        <main>
-            <h1>Peliculas</h1>
-            <table border="1px">
-                <thead>
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Año</th>
-                        <th>Categoria</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Wall-e</td>
-                        <td>2005</td>
-                        <td>Infantil</td>
-                    </tr>
-                    <tr>
-                        <td>Wall-e 2</td>
-                        <td>2005</td>
-                        <td>Infantil</td>
-                    </tr>
-                </tbody>
-            </table>
-        </main>
-    </div>
-</body>
-
-</html>
+{% block contenido %}
+<table border="1px">
+    <thead>
+        <tr>
+            <th>Titulo</th>
+            <th>Año</th>
+            <th>Categoria</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Wall-e</td>
+            <td>2005</td>
+            <td>Infantil</td>
+        </tr>
+        <tr>
+            <td>Wall-e 2</td>
+            <td>2005</td>
+            <td>Infantil</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

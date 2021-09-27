@@ -29,7 +29,7 @@ header .logo{
     border: 1px solid orange;
     padding: 10px 5px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-
+    transform: rotate(-5deg);
 }
 
 header .titulo{

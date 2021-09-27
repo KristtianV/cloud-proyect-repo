@@ -24,3 +24,5 @@ def categoria_view(request, id):
 def peliculas_view(request):
     return render(request,'app/peliculas.html')
 
+def acerca_view(request):
+    return render(request,'app/acerca.html')

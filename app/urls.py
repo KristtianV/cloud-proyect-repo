@@ -9,4 +9,6 @@ urlpatterns = [
     #Ver una sola categoria
     path('categorias/<int:id>', views.categoria_view, name='categoria'),
     path('peliculas/', views.peliculas_view, name='peliculas'),
+    path('acerca/', views.acerca_view, name='acerca'),
 ]
+
