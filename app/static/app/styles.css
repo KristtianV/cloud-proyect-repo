@@ -42,6 +42,10 @@ header{
     overflow: unset;
 }
 
+fieldset{
+    border: none;
+}
+
 .header{
     position: relative;
     display: grid;
@@ -120,8 +124,7 @@ header{
 }
 
 .inf::-webkit-scrollbar {
-    width: 3px;
-    height: 10%;
+    width: 2px;
 }
 
 .inf::-webkit-scrollbar-thumb {
@@ -131,6 +134,7 @@ header{
        
 .inf::-webkit-scrollbar-track {
     background-color: rgba(255, 255, 255, 0);  
+    margin: 12px 0 12px 0;
 }
 
 .inf{
@@ -214,8 +218,7 @@ thead{
 }
 
 .welcome-container::-webkit-scrollbar {
-    width: 3px;
-    height: 10%;
+    width: 2px;
 }
 
 .welcome-container::-webkit-scrollbar-thumb {
@@ -224,7 +227,8 @@ thead{
 }
        
 .welcome-container::-webkit-scrollbar-track {
-    background-color: rgba(255, 255, 255, 0);  
+    background-color: rgba(255, 255, 255, 0); 
+    margin: 12px 0 12px 0; 
 }
 
 .welcome-container{
@@ -282,7 +286,8 @@ thead{
     color: var(--ter);
 }
 
-.form input[type=submit]{
+.form button[type=submit]{
+    border-style: none;
     width: 140px;
     height: 40px;
     background: var(--sec);
@@ -295,7 +300,8 @@ thead{
     transition: 0.5s;
 }
 
-.form input[type=submit]:hover {
+.form button[type=submit]:hover {
+    border-style: none;
     background: #fff;
     color: var(--sec);
     border: solid var(--sec);

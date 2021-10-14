@@ -1,0 +1,40 @@
+
+{% extends "app/templateOut.html" %}
+{% block titulo %}
+Iniciar sesión
+{% endblock %}
+
+{% block info %}
+Escriba sus credenciales de ingreso
+{% endblock %}
+
+{% block contenido %}
+<div class="forms">
+    <form action="{% url 'app:startup_post' %}" method="post" class="form" >
+        {% csrf_token %}
+        <fieldset>
+            <label for="">Usuario</label>
+            <input type="text" name="username" id="username" placeholder="Ingrese su usuario" required>
+        </fieldset>
+        <fieldset>
+            <label for="">Contraseña</label>
+            <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
+        </fieldset>
+        <fieldset>
+            <label for="">Correo</label>
+            <input type="email" name="email" id="email" placeholder="Ingrese su correo" required>
+        </fieldset>
+        <fieldset>
+            <label for="">Nombre</label>
+            <input type="text" name="name" id="name" placeholder="Ingrese sus Nombres" required>
+        </fieldset>
+        <fieldset>
+            <label for="">Apellidos</label>
+            <input type="text" name="lastname" id="lastname" placeholder="Ingrese sus Apellidos" required>
+        </fieldset>
+        <fieldset>
+            <button type="submit">Enviar</button>
+        </fieldset>
+    </form>
+</div>
+{% endblock %}

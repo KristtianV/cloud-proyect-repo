@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+    <title>Hechos de Corrupción Gubernamental</title>
+</head>
+<header class="header">
+    <div class="head-title">
+        <a href="#">
+            <h1>Hechos de Corrupción Gubernamental</h1>
+        </a>
+    </div>
+    <nav class="nav">
+        <ul class="ul-start">
+            <li class="li-start"><a href="{% url 'app:login_view' %}">Iniciar sesión</a></li>
+            <li class="li-start"><a href="{% url 'app:startup_view' %}">Registrarse</a></li>
+        </ul>
+        </div>
+    </nav>
+</header>
+
+<body>
+    <div class="form-container">
+        <div class="welcome-container">
+            <span>
+                {% block titulo %}
+                {% endblock %}
+            </span>
+            <hr>
+            <p>
+                {% block info %}
+                {% endblock %}
+            </p>
+            <hr>
+            {% block contenido %}
+            {% endblock %}
+        </div>
+    </div>
+</body>
+<footer>
+    <ul>
+        <li>Profesor: John Alexander Cardozo Ramírez</li>
+        <li><a href="https://www.usta.edu.co">Univesidad Santo Tomás</a></li>
+    </ul>
+</footer>
+
+</html>

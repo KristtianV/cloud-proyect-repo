@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+    <title>Hechos de Corrupción Gubernamental</title>
+</head>
+<header class="header">
+    <div class="head-title">
+        <a href="#">
+            <h1>Hechos de Corrupción Gubernamental</h1>
+        </a>
+    </div>
+    <nav class="nav">
+        <ul class="ul-start">
+            {% block Administrar %}{% endblock %}
+                <ul class="drop">
+                    <ul class="drop">
+                        <li><a href="#">Crear Partido</a></li>
+                        <li><a href="#">Aprobar individuo</a></li>
+                        <li><a href="#">Aprobar Proceso</a></li>
+                        <li><a href="#">Aprobar Afiliación</a></li>
+                        <li><a href="#">Habilitar ciudadano</a></li>
+                    </ul>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Creacion</a>
+                <ul class="drop">
+                    <li><a href="#">Crear Individuo</a></li>
+                    <li><a href="#">Crear Proceso</a></li>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Consulta</a>
+                <ul class="drop">
+                    <li><a href="#">Lista de individuos</a></li>
+                    <li><a href="#">Lista de Partidos</a></li>
+                </ul>
+            </li>
+            <li class="li-start"><a href="#">Perfil</a>
+                <ul class="drop">
+                    <li><a href="{% url 'app:editProfile_view' %}">Cambiar datos de cuenta</a></li>
+                    <li><a href="{% url 'app:logout_' %}">Cerrar sesión</a></li>
+                </ul>
+            </li>
+        </ul>
+        </div>
+    </nav>
+</header>
+{% block contenido %}
+{% endblock %}
+<footer>
+    <ul>
+        <li>Profesor: John Alexander Cardozo Ramírez</li>
+        <li><a href="https://www.usta.edu.co">Univesidad Santo Tomás</a></li>
+    </ul>
+</footer>
+
+</html>
