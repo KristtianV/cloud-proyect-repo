@@ -20,23 +20,23 @@
                         {% csrf_token %}
                         <fieldset>
                             <label for="">Usuario</label>
-                            <input type="text" name="username" id="username" placeholder="Ingrese su usuario" required>
+                            <input type="text" name="username" id="username" value="{{ request.user.username }}" required>
                         </fieldset>
                         <fieldset>
                             <label for="">Contraseña</label>
-                            <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
+                            <input type="password" name="password" id="password" value="{{ request.user.password }}" required>
                         </fieldset>
                         <fieldset>
                             <label for="">Correo</label>
-                            <input type="email" name="email" id="email" placeholder="Ingrese su correo" required>
+                            <input type="email" name="email" id="email" value="{{ request.user.email }}" required>
                         </fieldset>
                         <fieldset>
                             <label for="">Nombre</label>
-                            <input type="text" name="name" id="name" placeholder="Ingrese sus Nombres" required>
+                            <input type="text" name="name" id="name" value="{{ request.user.first_name }}" required>
                         </fieldset>
                         <fieldset>
                             <label for="">Apellidos</label>
-                            <input type="text" name="lastname" id="lastname" placeholder="Ingrese sus Apellidos" required>
+                            <input type="text" name="lastname" id="lastname" value="{{ request.user.last_name }}"  required>
                         </fieldset>
                         <fieldset>
                             <button type="submit">Enviar</button>

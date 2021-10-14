@@ -10,9 +10,11 @@
 
 {% block contenido %}
 <body>
-    <div class="inf-container">
-        <div class="inf">
+    <div class="form-container">
+        <div class="welcome-container">
+            <br><br>
             <span>Bienvenido {{ request.user.first_name }} {{ request.user.last_name }}</span>
+            <hr>
             <p>Selecione una de las opciones de la barra de navegación</p>
         </div>
     </div>

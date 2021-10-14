@@ -5,6 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+
 # Create your views here.
 
 # Iniciar sesion
@@ -58,20 +59,42 @@ def startup_post(request):
 def editProfile_view(request):
     return render(request,'app/editProfile.html')
 def editProfile_post(request):
+    #usuario actual
+    userToMod=User.objects.get(id=request.user.id)
+    u=request.user.username
+    e=request.user.email
+    p=request.user.password
+
     #obtiene datos del formulario"
     username = request.POST['username']
     password = request.POST['password']
     email = request.POST['email']
     name = request.POST['name']
     lastname = request.POST['lastname']
-    # Verifica si existe
-    if User.objects.filter(username=username).exists():
-        return HttpResponse("Error:El nombre de usuario ya existe")
-    elif User.objects.filter(email=email).exists():
-        return HttpResponse("Error:El correo ya existe")
-    else:  
-        #editar el usuario
-        return HttpResponse("editado")
+    
+    # Verifica si existe el username
+    if User.objects.filter(username=username).exists(): 
+        if u != username: #existe y no es del usuario actual
+            return HttpResponse("Error:El nombre de usuario ya existe")
+    else:#Si no existe
+        userToMod.username = username
+
+    # Verifica si existe el email
+    if User.objects.filter(email=email).exists(): 
+        if e != email: #existe y no es del usuario actual
+            return HttpResponse("Error:El correo ya existe")
+    else:#Si no existe
+        userToMod.email = email   
+    
+    if p != password: #si lo modifico
+        userToMod.set_password(password)
+
+    userToMod.last_name = lastname
+    userToMod.first_name = name
+
+    userToMod.save()
+    
+    return redirect('app:index')
 
 #Index
 @login_required
