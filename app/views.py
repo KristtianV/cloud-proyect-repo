@@ -1,15 +1,17 @@
+from typing import TypeVar
 from django.http.response import  HttpResponse
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, request
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Partido
+from .models import Partido, Individuo
+import time
 
 
 # Create your views here.
 
-# Iniciar sesion
+# INICIAR SESION
 def login_view(request):
     return render(request,'app/login.html')  
 def login_post(request):
@@ -27,7 +29,7 @@ def login_post(request):
         login(request, user)
         return redirect('app:index')
 
-#Crear usuario
+#CREAR USUARIO
 def startup_view(request):
     return render(request,'app/startup.html')
 def startup_post(request):
@@ -53,7 +55,7 @@ def startup_post(request):
         user.save()
         return redirect('app:login_view')
 
-#editar perfil
+#EDITAR PERFIL
 @login_required
 def editProfile_view(request):
     return render(request,'app/editProfile.html')
@@ -95,19 +97,20 @@ def editProfile_post(request):
     
     return redirect('app:index')
 
-#Index
+#INDEX
 @login_required
 def index_view(request):
     return render(request,'app/index.html')
 
-#logout
+#CERRAR SESION
 def logout_(request):
     #cierra la sesion activa
     logout(request)
     return redirect('app:login_view')
 
-#Crear partido
+#CREAR PARTIDO
 def creaPart_view(request):
+    
     return render(request,'app/creaPart.html')
 
 def creaPart_post(request):
@@ -126,10 +129,38 @@ def creaPart_post(request):
     
     return redirect('app:consPart_view')
 
-#consultar lista de partidos
+#CONSULTAR LISTA DE PARTIDO
 def consPart_view(request):
     lista = Partido.objects.all()
     contexto = {
         'partidos':lista 
     }
     return render(request, 'app/consPart.html', contexto)
+
+#CREAR INDIVIDUO
+def creaIndiv_view(request):
+    return render(request,'app/creaIndiv.html')
+def creaIndiv_post(request):
+    #obtengo los datos del formulario
+    indiv_lastname = request.POST['indiv_lastname']
+    indiv_name = request.POST['indiv_name']
+    birthday = request.POST['birthday']
+    #Obtiene el User creador
+    id_User = request.user.id
+    creator = User.objects.get(id=id_User)
+    #Inicializo el contador de vistas y la bandera de activo
+    views = 0
+    active  = False
+
+    i=Individuo()
+    i.indiv_lastname = indiv_lastname
+    i.indiv_name = indiv_lastname
+    if birthday:
+        i.birthday = birthday
+    i.creator = creator
+    i.views = views
+    i.active = active
+    i.save()
+    
+    return redirect('app:index')
+    

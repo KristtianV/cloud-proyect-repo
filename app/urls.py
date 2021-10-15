@@ -27,6 +27,9 @@ urlpatterns = [
     #consultar partido
     path('consPart',views.consPart_view, name='consPart_view'),
 
+    #crear individuo
+    path('creaIndiv',views.creaIndiv_view, name='creaIndiv_view'),
+    path('creaIndiv_post',views.creaIndiv_post, name='creaIndiv_post'),
 
 ]
 

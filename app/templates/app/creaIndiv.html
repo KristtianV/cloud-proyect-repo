@@ -1,0 +1,41 @@
+{% extends "app/templateIn.html" %}
+
+{% block Administrar %}
+    {% if request.user.is_superuser == 0 %}
+        <li style="display: none;" class="li-start"><a href="#">Administrar</a>
+    {% else %}
+        <li class="li-start"><a href="#">Administrar</a>
+    {% endif %}
+{% endblock %}
+
+{% block contenido %}
+<body>
+    <div class="form-container">
+        <div class="welcome-container">
+            <span>Crear individuo</span>
+            <hr>
+            <p></p>
+            <div class="forms">
+                <form action="{% url 'app:creaIndiv_post' %}" method="post" id="form-log" class="form">
+                    {% csrf_token %} 
+                    <fieldset>
+                        <label for="">Apellidos</label>
+                        <input type="text" name="indiv_lastname" id="indiv-lastname" placeholder="Ingrese los Apellidos" required>
+                    </fieldset>
+                    <fieldset>
+                        <label for="">Nombres</label>
+                        <input type="text" name="indiv_name" id="indiv-name" placeholder="Ingrese los Nombres" required>
+                    </fieldset>
+                    <fieldset>
+                        <label for="">Fecha de nacimiento</label>
+                        <input type="date" name="birthday" id="birthday">
+                    </fieldset>
+                    <fieldset>
+                        <button type="submit">Enviar</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
