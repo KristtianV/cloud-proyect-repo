@@ -122,6 +122,14 @@ def creaPart_post(request):
     p.nameP = nameP
     p.views = views
     p.creator= creator
-    p.save()
+    p.save()   
     
-    return redirect('app:index')
+    return redirect('app:consPart_view')
+
+#consultar lista de partidos
+def consPart_view(request):
+    lista = Partido.objects.all()
+    contexto = {
+        'partidos':lista 
+    }
+    return render(request, 'app/consPart.html', contexto)

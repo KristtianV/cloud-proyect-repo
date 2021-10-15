@@ -24,6 +24,9 @@ urlpatterns = [
     path('creaPart',views.creaPart_view, name='creaPart_view'),
     path('creaPart_post',views.creaPart_post, name='creaPart_post'),
 
+    #consultar partido
+    path('consPart',views.consPart_view, name='consPart_view'),
+
 
 ]
 
