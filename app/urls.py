@@ -19,7 +19,10 @@ urlpatterns = [
     #editar usuario
     path('editProfile',views.editProfile_view, name='editProfile_view'),
     path('editProfile_post',views.editProfile_post, name='editProfile_post'),
-
+    
+    #crear partido
+    path('creaPart',views.creaPart_view, name='creaPart_view'),
+    path('creaPart_post',views.creaPart_post, name='creaPart_post'),
 
 
 ]

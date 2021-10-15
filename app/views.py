@@ -4,14 +4,14 @@ from django.http import HttpResponse, request
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from .models import Partido
 
 
 # Create your views here.
 
 # Iniciar sesion
 def login_view(request):
-    return render(request,'app/login.html')
-    
+    return render(request,'app/login.html')  
 def login_post(request):
     #obtener los datos del formulario
     username = request.POST['username']
@@ -30,7 +30,6 @@ def login_post(request):
 #Crear usuario
 def startup_view(request):
     return render(request,'app/startup.html')
-
 def startup_post(request):
     #obtiene datos del formulario"
     username = request.POST['username']
@@ -106,3 +105,23 @@ def logout_(request):
     #cierra la sesion activa
     logout(request)
     return redirect('app:login_view')
+
+#Crear partido
+def creaPart_view(request):
+    return render(request,'app/creaPart.html')
+
+def creaPart_post(request):
+    #obtengo los datos del formulario
+    nameP = request.POST['nameP']
+    views = 0
+    id_User = request.user.id
+    #Obtiene el User creador
+    creator = User.objects.get(id=id_User)
+    #Crea el partido
+    p=Partido()
+    p.nameP = nameP
+    p.views = views
+    p.creator= creator
+    p.save()
+    
+    return redirect('app:index')
