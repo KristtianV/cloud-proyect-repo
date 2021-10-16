@@ -22,13 +22,10 @@
                 </thead>
                     {% for partido in partidos %}
                         <tr>
-                            <td>{{ partido.nameP}}</td><td>{{partido.views}}</td><td>Procesos</td>
+                            <td><a href="{% url 'app:consAPart_view' partido.id %}">{{ partido.nameP}}</a></td><td>{{partido.views}}</td><td>Procesos</td>
                         </tr>               
                     {% endfor %}
             </table>
-            <div class="btn-container">
-                <button class="cons-Btn"><a href="#">Afiliar individuo al partido</a></button>
-            </div>
         </div>
     </div>
 </body>

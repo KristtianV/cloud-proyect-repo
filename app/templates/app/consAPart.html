@@ -1,0 +1,44 @@
+{% extends "app/templateIn.html" %}
+
+{% block Administrar %}
+    {% if request.user.is_superuser == 0 %}
+        <li style="display: none;" class="li-start"><a href="#">Administrar</a>
+    {% else %}
+        <li class="li-start"><a href="#">Administrar</a>
+    {% endif %}
+{% endblock %}
+
+{% block contenido %}
+<body>
+    <div class="inf-container">
+        <div class="inf">
+            <span>Consultar Partido Político</span>
+            <p>Informacion del partido</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre del partido</th><th>Cantidad total de procesos</th><th>Cantidad de procesos culpables</th><th>Cantidad de vistas</th>
+                    </tr>
+                </thead>
+                        <tr>
+                            <td>{{ info.nameP }}</td><td>procesos</td><td>Procesos vulpable</td><td>{{ info.views }}</td>
+                        </tr>               
+            </table>
+            <span>Lista de afiliados</span>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Apellidos</th><th>Nombres</th><th>fecha de ingreso</th><th>fecha de salida</th>
+                    </tr>
+                </thead>
+                        <tr>
+                            <td>Apellidos</td><td>Nombres</td><td>fecha de ingreso</td><td>fecha de salida</td>
+                        </tr>               
+            </table>
+            <div class="btn-container">
+                <button class="cons-Btn"><a href="#">Afiliar individuo al partido</a></button>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

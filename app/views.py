@@ -6,7 +6,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import Partido, Individuo
-import time
 
 
 # Create your views here.
@@ -109,8 +108,8 @@ def logout_(request):
     return redirect('app:login_view')
 
 #CREAR PARTIDO
+@login_required
 def creaPart_view(request):
-    
     return render(request,'app/creaPart.html')
 
 def creaPart_post(request):
@@ -130,6 +129,7 @@ def creaPart_post(request):
     return redirect('app:consPart_view')
 
 #CONSULTAR LISTA DE PARTIDO
+@login_required
 def consPart_view(request):
     lista = Partido.objects.all()
     contexto = {
@@ -137,7 +137,23 @@ def consPart_view(request):
     }
     return render(request, 'app/consPart.html', contexto)
 
+#CONSULTAR UN PARTIDO
+@login_required
+def consAPart_view(request,id):
+    #obtengo el partido
+    partido = Partido.objects.get(id=id)
+    #aumento el numero de vistas
+    partido.views = partido.views + 1
+    #guardo los cambios
+    partido.save()
+    #creo el contexto
+    contexto = {
+        'info':partido 
+    }
+    return render(request, 'app/consAPart.html', contexto)
+
 #CREAR INDIVIDUO
+@login_required
 def creaIndiv_view(request):
     return render(request,'app/creaIndiv.html')
 def creaIndiv_post(request):
@@ -153,7 +169,7 @@ def creaIndiv_post(request):
     active  = False
 
     i=Individuo()
-    i.indiv_lastname = indiv_lastname
+    i.indiv_lastname = indiv_name
     i.indiv_name = indiv_lastname
     if birthday:
         i.birthday = birthday
@@ -161,6 +177,28 @@ def creaIndiv_post(request):
     i.views = views
     i.active = active
     i.save()
-    
-    return redirect('app:index')
-    
+    return redirect('app:consIndiv_view')
+
+#CONSULTAR INDIVIDUOS
+@login_required
+def consIndiv_view(request):
+    lista = Individuo.objects.all()
+    contexto = {
+        'individuos':lista 
+    }
+    return render(request, 'app/consIndiv.html',contexto)
+
+#CONSULTAR UN INDIVIDUO
+@login_required
+def consAIndiv_view(request,id):
+    #obtengo el individuo
+    individuo = Individuo.objects.get(id=id)
+    #aumento el numero de vistas
+    individuo.views = individuo.views + 1
+    #guardo los cambios
+    individuo.save()
+    #creo el contexto
+    contexto = {
+        'info':individuo 
+    }
+    return render(request, 'app/consAIndiv.html', contexto)

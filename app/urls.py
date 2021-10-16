@@ -24,12 +24,19 @@ urlpatterns = [
     path('creaPart',views.creaPart_view, name='creaPart_view'),
     path('creaPart_post',views.creaPart_post, name='creaPart_post'),
 
-    #consultar partido
+    #consultar partidos
     path('consPart',views.consPart_view, name='consPart_view'),
+    #consutar un partido
+    path('consPart/<int:id>',views.consAPart_view, name='consAPart_view'),
 
     #crear individuo
     path('creaIndiv',views.creaIndiv_view, name='creaIndiv_view'),
     path('creaIndiv_post',views.creaIndiv_post, name='creaIndiv_post'),
+    
+    #consultar individuos
+    path('consIndiv',views.consIndiv_view, name='consIndiv_view'),
+    #consutar un individuo
+    path('consIndiv/<int:id>',views.consAIndiv_view, name='consAIndiv_view'),
 
 ]
 

@@ -1,0 +1,54 @@
+{% extends "app/templateIn.html" %}
+
+{% block Administrar %}
+    {% if request.user.is_superuser == 0 %}
+        <li style="display: none;" class="li-start"><a href="#">Administrar</a>
+    {% else %}
+        <li class="li-start"><a href="#">Administrar</a>
+    {% endif %}
+{% endblock %}
+
+{% block contenido %}
+<body>
+    <div class="inf-container">
+        <div class="inf">
+            <span>Lista de individuos</span>
+            <p></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellidos</th>
+                        <th>Último partido afiliado</th>
+                        <th>Cantidad total de procesos</th>
+                        {% if request.user.is_superuser == 1 %}
+                            <th>Aprobado/No aprobado</th>
+                        {% else %}
+                            
+                        {% endif %}
+                    </tr>
+                </thead>
+                {% for individuo in individuos %}
+                <tr>
+                    <td><a href="{% url 'app:consAIndiv_view' individuo.id %}">{{ individuo.indiv_name }}</a></td>
+                    <td><a href="{% url 'app:consAIndiv_view' individuo.id %}">{{ individuo.indiv_lastname }}</a></td>
+                    <td>Último partido afiliado</td>
+                    <td>Procesos</td>
+                    {% if request.user.is_superuser == 1 %}
+                        <td>
+                            {% if individuo.active == 0 %}
+                                No Aprobado
+                            {% else %}
+                                Aprobado
+                            {% endif %}
+                        </td>
+                        {% else %}
+                            
+                        {% endif %}
+                </tr>               
+                {% endfor %}              
+            </table>
+        </div>
+    </div>
+</body>
+{% endblock %}
