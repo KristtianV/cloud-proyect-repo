@@ -316,12 +316,16 @@ thead{
 }
 
 select{
-    margin:20px auto;        
-    border:2px solid var(--ter);
-    height:30px;
-    width: 230px;
+    width: 90%;
+    height: 30px;
+    margin: auto;
+    border: 2px solid var(--sec);
+    border-radius: 20px;
+    outline: none;
+    text-align: center;
+    font-size: 15px;
+    color: var(--ter);
     overflow: hidden;
-    position:relative;
 }
 
 footer ul {

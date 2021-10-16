@@ -1,0 +1,50 @@
+{% extends "app/templateIn.html" %}
+
+{% block Administrar %}
+    {% if request.user.is_superuser == 0 %}
+        <li style="display: none;" class="li-start"><a href="#">Administrar</a>
+    {% else %}
+        <li class="li-start"><a href="#">Administrar</a>
+    {% endif %}
+{% endblock %}
+
+{% block contenido %}
+<body>
+    <div class="inf-container">
+        <div class="inf">
+            <span>Lista de procesos</span>
+            <p></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titulo del Proceso</th><th>Estado del proceso</th>
+                    </tr>
+                </thead>
+                    {% for proceso in procesos %}
+                        <tr>
+                            <td><a href="">{{ proceso.title }}</a></td>
+                            <td>
+                                {% if proceso.active == True %}
+                                    Aprobado
+                                {% else %}
+                                    No Aprobado
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form method="post" action="{% url 'app:aproPro_post' %}">
+                                    {% csrf_token %}
+                                    <fieldset>
+                                        <input type="text" name="id" id="id" style="display: none;" value="{{proceso.id}}">
+                                    </fieldset>
+                                    <fieldset>
+                                        <button type="submit" class="cons-Btn"><a>Cambiar Estado</a></button>
+                                    </fieldset>
+                                </form>
+                            </td>
+                        </tr>               
+                    {% endfor %}               
+            </table>
+        </div>
+    </div>
+</body>
+{% endblock %}

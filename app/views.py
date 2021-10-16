@@ -243,6 +243,7 @@ def aproIndiv_post(request):
     return redirect('app:consIndiv_view')
 
 #CREAR PROCESO
+@login_required
 def creaPro_view(request):
     return render(request, 'app/creaPro.html')
 def creaPro_post(request):
@@ -281,3 +282,25 @@ def creaPro_post(request):
     p.active = active
     p.save()
     return redirect('app:index')
+
+#APROBAR PRECESO
+@login_required
+def aproPro_view(request):
+    #obtengo lista de procesos
+    lista = Proceso.objects.all()
+    contexto = {
+        'procesos':lista 
+    }
+    return render(request,'app/aproPro.html',contexto)
+def aproPro_post(request):
+    id_proceso = request.POST['id']
+    proceso=Proceso.objects.get(id=id_proceso)
+
+    print("antes",proceso.active)
+    if proceso.active == True:
+        proceso.active=False
+    else:
+        proceso.active=True
+    
+    proceso.save()
+    return redirect('app:aproPro_view')
