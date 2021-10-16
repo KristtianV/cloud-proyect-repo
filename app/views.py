@@ -238,3 +238,7 @@ def aproIndiv_post(request):
         individuo.active=0
     individuo.save()
     return redirect('app:consIndiv_view')
+
+#CREAR PROCESO
+def creaPro_view(request):
+    return render(request, 'app/creaPro.html')

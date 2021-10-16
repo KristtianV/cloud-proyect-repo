@@ -3,6 +3,10 @@ from .import views
 
 app_name = 'app'
 urlpatterns = [
+
+    #index
+    path('',views.index_view, name='index'),
+    
     #iniciar sesion
     path('login/',views.login_view, name='login_view'),
     path('login_post/',views.login_post, name='login_post'),
@@ -17,10 +21,6 @@ urlpatterns = [
     path('habiCiuda',views.habiCiuda_view, name='habiCiuda_view'),
     path('habiCiuda_post',views.habiCiuda_post, name='habiCiuda_post'),
 
-
-    #index
-    path('',views.index_view, name='index'),
-
     #editar usuario
     path('editProfile',views.editProfile_view, name='editProfile_view'),
     path('editProfile_post',views.editProfile_post, name='editProfile_post'),
@@ -31,6 +31,7 @@ urlpatterns = [
 
     #consultar partidos
     path('consPart',views.consPart_view, name='consPart_view'),
+    
     #consutar un partido
     path('consPart/<int:id>',views.consAPart_view, name='consAPart_view'),
 
@@ -40,10 +41,15 @@ urlpatterns = [
     
     #consultar individuos
     path('consIndiv',views.consIndiv_view, name='consIndiv_view'),
+    
     #consutar un individuo
     path('consIndiv/<int:id>',views.consAIndiv_view, name='consAIndiv_view'),
+    
     #habilitar individuo
     path('aproIndiv_post',views.aproIndiv_post, name='aproIndiv_post'),
+
+    #crear proceso
+    path('creaPro',views.creaPro_view, name='creaPro_view'),
 
 ]
 
