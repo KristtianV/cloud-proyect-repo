@@ -54,6 +54,25 @@ def startup_post(request):
         user.save()
         return redirect('app:login_view')
 
+#HBILITAR CIUDADANO
+@login_required
+def habiCiuda_view(request):
+    #obtengo lista de usuarios
+    lista = User.objects.all()
+    contexto = {
+        'users':lista 
+    }
+    return render(request,'app/habiCiuda.html', contexto)
+def habiCiuda_post(request):
+    id_User = request.POST['id']
+    user=User.objects.get(id=id_User)
+    if user.is_active == 0:
+        user.is_active=1
+    else:
+        user.is_active=0
+    user.save()
+    return redirect('app:habiCiuda_view')
+
 #EDITAR PERFIL
 @login_required
 def editProfile_view(request):

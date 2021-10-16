@@ -12,6 +12,11 @@ urlpatterns = [
     #Crear usuario
     path('startup/',views.startup_view, name='startup_view'),
     path('startup_post/',views.startup_post, name='startup_post'),
+    
+    #Habilitar ciudadano
+    path('habiCiuda',views.habiCiuda_view, name='habiCiuda_view'),
+    path('habiCiuda_post',views.habiCiuda_post, name='habiCiuda_post'),
+
 
     #index
     path('',views.index_view, name='index'),
