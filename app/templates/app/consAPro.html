@@ -1,0 +1,47 @@
+{% extends "app/templateIn.html" %}
+
+{% block Administrar %}
+    {% if request.user.is_superuser == 0 %}
+        <li style="display: none;" class="li-start"><a href="#">Administrar</a>
+    {% else %}
+        <li class="li-start"><a href="#">Administrar</a>
+    {% endif %}
+{% endblock %}
+
+{% block contenido %}
+<body>
+    <div class="inf-container">
+        <div class="inf">
+            <span>Consultar Proceso</span>
+            <p>Informacion del Proceso</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Titulo</th><th>Fecha de inicio</th><th>Estado</th><th>Entidad</th><th>Monto</th><th>Comentarios del proceso</th><th>Cantidad de vistas</th>
+                    </tr>
+                </thead>
+                        <tr>
+                            <td>{{info.title}}</td>
+                            <td>{{info.date_start}}</td>
+                            <td>{{info.state}}</td>
+                            <td>{{info.entity}}</td>
+                            <td>{{info.howmuch}}</td>
+                            <td>{{info.comments}}</td>
+                            <td>{{info.views}}</td>
+                        </tr>               
+            </table>
+            <span>Lista de implicados</span>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Apellidos</th><th>Nombres</th><th>Partido político</th><th>Fecha de acusación</th><th>Acusación</th><th>Declarado</th><th>Pena</th><th>Comentarios</th>
+                    </tr>
+                </thead>
+                        <tr>
+                            <td>Apellidos</td><td>Apellidos</td><td>Apellidos</td><td>Apellidos</td><td>Apellidos</td><td>Apellidos</td><td>Apellidos</td><td>Apellidos</td>
+                        </tr>               
+            </table>
+        </div>
+    </div>
+</body>
+{% endblock %}

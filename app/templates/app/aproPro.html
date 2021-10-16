@@ -22,7 +22,7 @@
                 </thead>
                     {% for proceso in procesos %}
                         <tr>
-                            <td><a href="">{{ proceso.title }}</a></td>
+                            <td><a href="{% url 'app:aproAPro_view' proceso.id %}">{{ proceso.title }}</a></td>
                             <td>
                                 {% if proceso.active == True %}
                                     Aprobado

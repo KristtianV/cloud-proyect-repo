@@ -301,6 +301,19 @@ def aproPro_post(request):
         proceso.active=False
     else:
         proceso.active=True
-    
     proceso.save()
     return redirect('app:aproPro_view')
+
+#CONSULTAR UN PROCESO
+def aproAPro_view(request,id):
+    #obtengo el proceso
+    proceso = Proceso.objects.get(id=id)
+    #aumento el numero de vistas
+    proceso.views = proceso.views + 1
+    #guardo los cambios
+    proceso.save()
+    #creo el contexto
+    contexto = {
+        'info':proceso 
+    }
+    return render(request, 'app/consApro.html', contexto)

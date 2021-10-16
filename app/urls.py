@@ -56,5 +56,9 @@ urlpatterns = [
     path('aproPro',views.aproPro_view, name='aproPro_view'),
     path('aproPro_post',views.aproPro_post, name='aproPro_post'),
 
+    #aprobar proceso
+    path('aproPro/<int:id>',views.aproAPro_view, name='aproAPro_view'),
+
+
 ]
 
