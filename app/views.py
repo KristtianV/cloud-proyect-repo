@@ -5,7 +5,7 @@ from django.http import HttpResponse, request
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Partido, Individuo
+from .models import Partido, Individuo, Proceso
 
 
 # Create your views here.
@@ -185,8 +185,11 @@ def creaIndiv_post(request):
     creator = User.objects.get(id=id_User)
     #Inicializo el contador de vistas y la bandera de activo
     views = 0
-    active  = False
-
+    if request.user.is_superuser == 0:
+        active  = False
+    else:
+        active  = True
+    #Creo el individuo
     i=Individuo()
     i.indiv_lastname = indiv_name
     i.indiv_name = indiv_lastname
@@ -242,3 +245,39 @@ def aproIndiv_post(request):
 #CREAR PROCESO
 def creaPro_view(request):
     return render(request, 'app/creaPro.html')
+def creaPro_post(request):
+    #obtengo los datos del formulario
+    title = request.POST['title']
+    date_start = request.POST['date_start']
+    date_end = request.POST['date_end']
+    state = request.POST['state']
+    entity = request.POST['entity']
+    howmuch = request.POST['howmuch']
+    comments = request.POST['comments']
+    #Obtiene el User creador
+    id_User = request.user.id
+    creator = User.objects.get(id=id_User)
+    #Inicializo el contador de vistas y la bandera de activo
+    views = 0
+    if request.user.is_superuser == 0:
+        active  = False
+    else:
+        active  = True
+    #Creo el proceso
+    p=Proceso()
+    p.title = title
+    p.date_start = date_start
+    if date_end:
+        p.date_end = date_end
+    if state == "on":
+        p.state = 1
+    else:
+        p.state = 0
+    p.entity = entity
+    p.howmuch = howmuch
+    p.comments = comments
+    p.creator = creator
+    p.views = views
+    p.active = active
+    p.save()
+    return redirect('app:index')

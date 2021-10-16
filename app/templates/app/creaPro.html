@@ -16,7 +16,7 @@
             <hr>
             <p>Crea un proceso en la plataforma para posteriormente asociar afiliados a partidos políticos</p>
             <div class="forms">
-                <form method="post" id="form-log" class="form">
+                <form action="{% url 'app:creaPro_post' %}" method="post" id="form-log" class="form">
                     {% csrf_token %}
                     <fieldset>
                         <label for="">Titulo</label>

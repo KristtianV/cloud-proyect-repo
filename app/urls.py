@@ -50,6 +50,6 @@ urlpatterns = [
 
     #crear proceso
     path('creaPro',views.creaPro_view, name='creaPro_view'),
-
+    path('creaPro_post',views.creaPro_post, name='creaPro_post'),
 ]
 
