@@ -201,10 +201,15 @@ def creaIndiv_post(request):
 #CONSULTAR INDIVIDUOS
 @login_required
 def consIndiv_view(request):
-    lista = Individuo.objects.all()
+    if request.user.is_superuser:
+        #si es root obtiene toda la lista
+        lista = Individuo.objects.all()
+    else:
+        #si no filtra los activos
+        lista = Individuo.objects.filter(active=1)
     contexto = {
-        'individuos':lista 
-    }
+            'individuos':lista 
+        }
     return render(request, 'app/consIndiv.html',contexto)
 
 #CONSULTAR UN INDIVIDUO
@@ -221,3 +226,15 @@ def consAIndiv_view(request,id):
         'info':individuo 
     }
     return render(request, 'app/consAIndiv.html', contexto)
+
+#APROBARINDIVIDUO
+@login_required
+def aproIndiv_post(request):
+    id_indiv = request.POST['id']
+    individuo=Individuo.objects.get(id=id_indiv)
+    if individuo.active == 0:
+        individuo.active=1
+    else:
+        individuo.active=0
+    individuo.save()
+    return redirect('app:consIndiv_view')

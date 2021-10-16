@@ -42,6 +42,8 @@ urlpatterns = [
     path('consIndiv',views.consIndiv_view, name='consIndiv_view'),
     #consutar un individuo
     path('consIndiv/<int:id>',views.consAIndiv_view, name='consAIndiv_view'),
+    #habilitar individuo
+    path('aproIndiv_post',views.aproIndiv_post, name='aproIndiv_post'),
 
 ]
 
