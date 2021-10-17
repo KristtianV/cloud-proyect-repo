@@ -31,9 +31,22 @@
                         <th>Apellidos</th><th>Nombres</th><th>fecha de ingreso</th><th>fecha de salida</th>
                     </tr>
                 </thead>
-                        <tr>
-                            <td>Apellidos</td><td>Nombres</td><td>fecha de ingreso</td><td>fecha de salida</td>
-                        </tr>               
+                {% for individuo in lista_indv %}
+                    <tr>
+                        <td>{{individuo.indiv_lastname}}</td>     
+                        <td>{{individuo.indiv_name}}</td>
+                        {% if individuo.date_in %}
+                            <td>{{individuo.date_in}}</td>     
+                        {% else %}
+                            <td>Sin datos</td>
+                        {% endif %}
+                        {% if individuo.date_out %}
+                            <td>{{individuo.date_out}}</td>     
+                        {% else %}
+                            <td>Sin datos</td>
+                        {% endif %}
+                    </tr>  
+                {% endfor %}              
             </table>
         </div>
     </div>

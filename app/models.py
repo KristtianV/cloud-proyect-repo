@@ -52,7 +52,7 @@ class Proceso(models.Model):
 
 class Afiliacion(models.Model):
     date_in = models.DateField(null= True, blank=True)
-    date_out = models.BooleanField(null= True, blank=True)
+    date_out = models.DateField(null= True, blank=True)
     active = models.BooleanField(null=False)
     indiv_id = models.ForeignKey(#llave foranea
         Individuo,#clase a la cual esta apuntando la llave

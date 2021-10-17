@@ -22,7 +22,8 @@
                 </thead>
                     {% for partido in partidos %}
                         <tr>
-                            <td><a href="{% url 'app:consAPart_view' partido.id %}">{{ partido.nameP}}</a></td><td>{{partido.views}}</td><td>Procesos</td>
+                            <td><a href="{% url 'app:consAPart_view' partido.id %}">{{ partido.nameP}}</a></td>
+                            <td>{{partido.views}}</td><td>Procesos</td>
                         </tr>               
                     {% endfor %}
             </table>

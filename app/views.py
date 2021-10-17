@@ -159,16 +159,30 @@ def consPart_view(request):
 #CONSULTAR UN PARTIDO
 @login_required
 def consAPart_view(request,id):
+    lista_indv=[]
+
     #obtengo el partido
     partido = Partido.objects.get(id=id)
+    #obtengo las afiliaciones
+    afiliacion = Afiliacion.objects.filter(part_id_id=id)
+    #Recorre cada afiliacion
+    for afiliado in afiliacion:
+       lista_indv.append({
+           'date_in': afiliado.date_in,
+           'date_out': afiliado.date_out,
+           'indiv_name': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_name,
+           'indiv_lastname': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_lastname
+       })
+    contexto = {
+        'info':partido,
+        'lista_indv':lista_indv
+    }
+    print(lista_indv)
     #aumento el numero de vistas
     partido.views = partido.views + 1
     #guardo los cambios
     partido.save()
-    #creo el contexto
-    contexto = {
-        'info':partido 
-    }
+
     return render(request, 'app/consAPart.html', contexto)
 
 #CREAR INDIVIDUO
