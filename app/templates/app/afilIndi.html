@@ -1,0 +1,44 @@
+{% extends "app/templateIn.html" %}
+
+{% block Administrar %}
+    {% if request.user.is_superuser == 0 %}
+        <li style="display: none;" class="li-start"><a href="#">Administrar</a>
+    {% else %}
+        <li class="li-start"><a href="#">Administrar</a>
+    {% endif %}
+{% endblock %}
+
+{% block contenido %}
+<body>
+    <div class="form-container">
+        <div class="welcome-container">
+            <span>Afiliar individuo a partido</span>
+            <hr>
+            <p>Nombre del Individuo: <br> {{individuo.indiv_name}} {{individuo.indiv_lastname}}</p>
+            <label for="">Partido politico</label>
+            <div class="forms">
+                <form action="{% url 'app:afilIndi_post' %}" method="post" id="form-log" class="form">
+                    {% csrf_token %} 
+                   <select name="part_id" id="part_id">
+                    {% for partido in partidos %}
+                        <option label="{{partido.nameP}}">{{partido.id}}</option>
+                    {% endfor %}
+                   </select>
+                   <fieldset>
+                        <label for="">Fecha de Ingreso</label>
+                        <input type="date" name="date_in" id="date_in">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">Fecha de Salida</label>
+                        <input type="date" name="date_out" id="date_out">
+                    </fieldset>
+                    <fieldset>
+                        <input style="display: none;" type="text" name="indiv_id" id="indiv_id" value="{{individuo.id}}">
+                    </fieldset>
+                   <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

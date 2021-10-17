@@ -49,3 +49,23 @@ class Proceso(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     class Meta:
         app_label: 'app'
+
+class Afiliacion(models.Model):
+    date_in = models.DateField(null= True, blank=True)
+    date_out = models.BooleanField(null= True, blank=True)
+    active = models.BooleanField(null=False)
+    indiv_id = models.ForeignKey(#llave foranea
+        Individuo,#clase a la cual esta apuntando la llave
+        related_name= 'indiv_afil',
+        null=False,
+        on_delete=models.PROTECT,
+    )
+    part_id = models.ForeignKey(#llave foranea
+        Partido,#clase a la cual esta apuntando la llave
+        related_name= 'part_afil',
+        null=False,
+        on_delete=models.PROTECT,
+    )
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        app_label: 'app'

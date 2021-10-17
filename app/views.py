@@ -5,7 +5,7 @@ from django.http import HttpResponse, request
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Partido, Individuo, Proceso
+from .models import Afiliacion, Partido, Individuo, Proceso
 
 
 # Create your views here.
@@ -242,6 +242,46 @@ def aproIndiv_post(request):
     individuo.save()
     return redirect('app:consIndiv_view')
 
+#AFILIAR INDIVIDUO A PARTIDO
+def afilIndi_view(request,id):
+    #obtengo el individuo
+    individuo = Individuo.objects.get(id=id)
+    #obtengo la lista de partidos
+    partidos = Partido.objects.all()
+    #creo el contexto
+    contexto = {
+        'individuo':individuo,
+        'partidos':partidos 
+    }
+    return render(request, 'app/afilIndi.html', contexto)
+
+def afilIndi_post(request):
+    #obtengo los datos del formulario
+    part_id = request.POST['part_id']
+    indiv_id = request.POST['indiv_id']
+    date_in = request.POST['date_in']
+    date_out = request.POST['date_out']
+    #Inicializo la bandera de activo
+    if request.user.is_superuser == 0:
+        active  = False
+    else:
+        active  = True
+    #obtengo el individuo
+    part_id_id = Partido.objects.get(id=part_id)
+    indiv_id_id = Individuo.objects.get(id=indiv_id)
+
+    a = Afiliacion()
+    
+    if date_in:
+        a.date_in = date_in
+    if date_out:
+        a.date_out = date_out
+    a.part_id_id = part_id_id.id
+    a.indiv_id_id = indiv_id_id.id
+    a.active = active
+    a.save()
+    return redirect('app:consIndiv_view')
+
 #CREAR PROCESO
 @login_required
 def creaPro_view(request):
@@ -305,7 +345,7 @@ def aproPro_post(request):
     return redirect('app:aproPro_view')
 
 #CONSULTAR UN PROCESO
-def aproAPro_view(request,id):
+def consApro_view(request,id):
     #obtengo el proceso
     proceso = Proceso.objects.get(id=id)
     #aumento el numero de vistas
@@ -317,3 +357,5 @@ def aproAPro_view(request,id):
         'info':proceso 
     }
     return render(request, 'app/consApro.html', contexto)
+
+

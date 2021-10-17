@@ -42,7 +42,7 @@ urlpatterns = [
     #consultar individuos
     path('consIndiv',views.consIndiv_view, name='consIndiv_view'),
     
-    #consutar un individuo
+    #consultar un individuo
     path('consIndiv/<int:id>',views.consAIndiv_view, name='consAIndiv_view'),
     
     #habilitar individuo
@@ -56,9 +56,12 @@ urlpatterns = [
     path('aproPro',views.aproPro_view, name='aproPro_view'),
     path('aproPro_post',views.aproPro_post, name='aproPro_post'),
 
-    #aprobar proceso
-    path('aproPro/<int:id>',views.aproAPro_view, name='aproAPro_view'),
+    #consultar un proceso
+    path('consApro/<int:id>',views.consApro_view, name='consApro_view'),
 
+    #afiliar individuo a partido
+    path('afilIndi/<int:id>',views.afilIndi_view, name='afilIndi_view'),
+    path('afilIndi_post',views.afilIndi_post, name='afilIndi_post'),
 
 ]
 
