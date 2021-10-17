@@ -160,19 +160,19 @@ def consPart_view(request):
 @login_required
 def consAPart_view(request,id):
     lista_indv=[]
-
     #obtengo el partido
     partido = Partido.objects.get(id=id)
     #obtengo las afiliaciones
     afiliacion = Afiliacion.objects.filter(part_id_id=id)
     #Recorre cada afiliacion
     for afiliado in afiliacion:
-       lista_indv.append({
-           'date_in': afiliado.date_in,
-           'date_out': afiliado.date_out,
-           'indiv_name': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_name,
-           'indiv_lastname': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_lastname
-       })
+        if afiliado.active:
+            lista_indv.append({
+                'date_in': afiliado.date_in,
+                'date_out': afiliado.date_out,
+                'indiv_name': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_name,
+                'indiv_lastname': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_lastname
+            })
     contexto = {
         'info':partido,
         'lista_indv':lista_indv
@@ -218,14 +218,30 @@ def creaIndiv_post(request):
 #CONSULTAR INDIVIDUOS
 @login_required
 def consIndiv_view(request):
+    lista_indv=[]
     if request.user.is_superuser:
         #si es root obtiene toda la lista
         lista = Individuo.objects.all()
     else:
         #si no filtra los activos
         lista = Individuo.objects.filter(active=1)
+    
+    for individuo in lista:
+        if Afiliacion.objects.filter(indiv_id_id=individuo.id).exists():
+            id_part= Afiliacion.objects.get(indiv_id_id=individuo.id).part_id_id
+            partido = Partido.objects.get(id=id_part).nameP
+        else:
+            partido= "Sin Afiliacion"
+        
+        lista_indv.append({
+            'id': individuo.id,
+            'indiv_name':individuo.indiv_name,
+            'indiv_lastname':individuo.indiv_lastname,
+            'lastPart': partido
+        })
+
     contexto = {
-            'individuos':lista 
+            'individuos':lista_indv, 
         }
     return render(request, 'app/consIndiv.html',contexto)
 

@@ -32,7 +32,7 @@
                 <tr>
                     <td><a href="{% url 'app:consAIndiv_view' individuo.id %}">{{ individuo.indiv_name }}</a></td>
                     <td><a href="{% url 'app:consAIndiv_view' individuo.id %}">{{ individuo.indiv_lastname }}</a></td>
-                    <td>Último partido afiliado</td>
+                    <td>{{individuo.lastPart}}</td>
                     <td>Procesos</td>
                     {% if request.user.is_superuser == 1 %}
                         <td>
