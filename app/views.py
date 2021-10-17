@@ -46,6 +46,7 @@ def startup_post(request):
     else:  
         #crea el usuario
         user=User()
+        user.is_active=0
         user.username = username
         user.set_password(password)
         user.email = email
@@ -58,7 +59,7 @@ def startup_post(request):
 @login_required
 def habiCiuda_view(request):
     #obtengo lista de usuarios
-    lista = User.objects.all()
+    lista = User.objects.all().order_by('is_active')
     contexto = {
         'users':lista 
     }
@@ -228,8 +229,12 @@ def consIndiv_view(request):
     
     for individuo in lista:
         if Afiliacion.objects.filter(indiv_id_id=individuo.id).exists():
-            id_part= Afiliacion.objects.get(indiv_id_id=individuo.id).part_id_id
-            partido = Partido.objects.get(id=id_part).nameP
+            part= Afiliacion.objects.get(indiv_id_id=individuo.id)
+            if part.active == 1:
+                id_part=part.part_id_id
+                partido = Partido.objects.get(id=id_part).nameP
+            else:
+                partido= "Sin Afiliacion"
         else:
             partido= "Sin Afiliacion"
         
@@ -237,6 +242,7 @@ def consIndiv_view(request):
             'id': individuo.id,
             'indiv_name':individuo.indiv_name,
             'indiv_lastname':individuo.indiv_lastname,
+            'active':individuo.active,
             'lastPart': partido
         })
 
