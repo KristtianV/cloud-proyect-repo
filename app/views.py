@@ -318,6 +318,37 @@ def afilIndi_post(request):
     a.save()
     return redirect('app:consIndiv_view')
 
+#APROBAR AFILIACION
+def aproAfil_view(request):
+    lista = Afiliacion.objects.all()
+    listaAfil=[]
+    for afiliacion in lista:
+        part=Partido.objects.get(id=afiliacion.part_id_id).nameP
+        name=Individuo.objects.get(id=afiliacion.indiv_id_id).indiv_name
+        lastname=Individuo.objects.get(id=afiliacion.indiv_id_id).indiv_lastname
+        listaAfil.append({
+            'id':afiliacion.id,
+            'part':part,
+            'name':name,
+            'lastname':lastname,
+            'active':afiliacion.active
+        })
+    contexto = {
+        'afiliaciones':listaAfil 
+    }
+    return render(request, 'app/aproAfil.html',contexto)
+
+def aproAfil_post(request):
+    id_afil = request.POST['id']
+    afiliacion=Afiliacion.objects.get(id=id_afil)
+    if afiliacion.active == True:
+         afiliacion.active=False
+    else:
+         afiliacion.active=True
+    afiliacion.save()
+    return redirect('app:aproAfil_view')
+
+
 #CREAR PROCESO
 @login_required
 def creaPro_view(request):
@@ -372,7 +403,6 @@ def aproPro_post(request):
     id_proceso = request.POST['id']
     proceso=Proceso.objects.get(id=id_proceso)
 
-    print("antes",proceso.active)
     if proceso.active == True:
         proceso.active=False
     else:

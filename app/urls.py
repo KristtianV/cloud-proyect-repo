@@ -62,6 +62,10 @@ urlpatterns = [
     #afiliar individuo a partido
     path('afilIndi/<int:id>',views.afilIndi_view, name='afilIndi_view'),
     path('afilIndi_post',views.afilIndi_post, name='afilIndi_post'),
+    
+    #aprobar afiliacion
+    path('aproAfil',views.aproAfil_view, name='aproAfil_view'),
+    path('aproAfil_post',views.aproAfil_post, name='aproAfil_post'),
 
 ]
 
