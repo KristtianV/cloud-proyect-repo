@@ -1,0 +1,64 @@
+{% extends "app/templateIn.html" %}
+
+{% block Administrar %}
+    {% if request.user.is_superuser == 0 %}
+        <li style="display: none;" class="li-start"><a href="#">Administrar</a>
+    {% else %}
+        <li class="li-start"><a href="#">Administrar</a>
+    {% endif %}
+{% endblock %}
+
+{% block contenido %}
+<body>
+    <div class="form-container">
+        <div class="welcome-container">
+            <span>Implicar Afiliado del partido en un proceso</span>
+            <hr>
+            <p>Nombre del Partido: <br>{{partido.nameP}}</p>
+            <label for=""></label>
+            
+            <div class="forms">
+                <form action="{% url 'app:ImplicarIndi_post' %}" method="post" id="form-log" class="form">
+                    {% csrf_token %} 
+                    <label for="">Afiliado</label>
+                    <select name="afil_id" id="afil_id">
+                        {% for afiliado in afiliados %}
+                            <option label="{{afiliado.indiv_name}} {{afiliado.indiv_lastname}}">{{afiliado.afil_id}}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="">Proceso</label>
+                    <select name="pro_id" id="pro_id">
+                        {% for proceso in procesos %}
+                            <option label="{{proceso.title}}">{{proceso.id}}</option>
+                        {% endfor %}
+                    </select>
+                    <fieldset>
+                        <label for="">Fecha de Implicación</label>
+                        <input type="date" name="date_imp" id="date_imp">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">Acusación</label>
+                        <input type="text" name="charges" id="charges">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">Culpable/Inocente</label>
+                        <select name="guilty" id="guilty">
+                            <option value="false">Inocente</option>
+                            <option value="true">Culpable</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <label for="">Pena</label>
+                        <input type="text" name="sentence" id="sentence">
+                    </fieldset>
+                    <fieldset>
+                        <label for="">Comentarios</label>
+                        <input type="text" name="commnts" id="commnts">
+                    </fieldset>
+                   <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

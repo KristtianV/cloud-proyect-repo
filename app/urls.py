@@ -67,5 +67,8 @@ urlpatterns = [
     path('aproAfil',views.aproAfil_view, name='aproAfil_view'),
     path('aproAfil_post',views.aproAfil_post, name='aproAfil_post'),
 
+    #implicar individuo
+    path('ImplicarIndi/<int:id>',views.ImplicarIndi_view, name='ImplicarIndi_view'),
+    path('ImplicarIndi_post',views.ImplicarIndi_post, name='ImplicarIndi_post'),
 ]
 

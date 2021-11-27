@@ -37,11 +37,15 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Apellidos</th><th>Nombres</th><th>Fecha de nacimiento</th><th>Cantidad de vistas</th>
+                        <th>Partido</th><th>Fecha de ingreso</th><th>Fecha salida</th>
                     </tr>
                 </thead>
                         <tr>
-                            <td>Apellidos</td><td>Nombres</td><td>fecha de ingreso</td><td>fecha de salida</td>
+                            {% if part.id %}
+                                <td><a href="{% url 'app:consAPart_view' part.id %}">{{ part.nameP }}</a></td><td>{{afil.date_in}}</td><td>{{afil.date_out}}</td>
+                            {% else %}
+                            <td>Sin afiliaciones</td><td>Sin datos</td><td>Sin datos</td>
+                            {% endif %}
                         </tr>               
             </table>
             <span>Lista de procesos</span>

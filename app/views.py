@@ -5,7 +5,7 @@ from django.http import HttpResponse, request
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import Afiliacion, Partido, Individuo, Proceso
+from .models import Afiliacion, Implicado, Partido, Individuo, Proceso
 
 
 # Create your views here.
@@ -148,7 +148,7 @@ def creaPart_post(request):
     
     return redirect('app:consPart_view')
 
-#CONSULTAR LISTA DE PARTIDO
+#CONSULTAR LISTA DE PARTIDOS
 @login_required
 def consPart_view(request):
     lista = Partido.objects.all()
@@ -254,6 +254,17 @@ def consIndiv_view(request):
 #CONSULTAR UN INDIVIDUO
 @login_required
 def consAIndiv_view(request,id):
+    lista_afil=[]
+    if Afiliacion.objects.filter(indiv_id_id=id).exists():
+        if Afiliacion.objects.get(indiv_id_id=id).active==True:
+            afiliacion =  Afiliacion.objects.get(indiv_id_id=id)
+            partido = Partido.objects.get(id=afiliacion.part_id_id)
+        else:
+            afiliacion={}
+            partido={}
+    else:
+        afiliacion={}
+        partido={}
     #obtengo el individuo
     individuo = Individuo.objects.get(id=id)
     #aumento el numero de vistas
@@ -262,7 +273,9 @@ def consAIndiv_view(request,id):
     individuo.save()
     #creo el contexto
     contexto = {
-        'info':individuo 
+        'info':individuo,
+        'afil': afiliacion,
+        'part':  partido
     }
     return render(request, 'app/consAIndiv.html', contexto)
 
@@ -424,4 +437,61 @@ def consApro_view(request,id):
     }
     return render(request, 'app/consApro.html', contexto)
 
+#IMPLICAR UN INDIVIDUO DE PARTIDO
+def ImplicarIndi_view(request,id):
+    lista_indv=[]
+    #obtengo el partido
+    partido = Partido.objects.get(id=id)
+    #obtengo lista de procesos
+    lista_pro = Proceso.objects.all()
+    #Obtengo las afiliaciones del partido
+    afiliacion = Afiliacion.objects.filter(part_id_id=id)
+    for afiliado in afiliacion:
+        if afiliado.active:
+            lista_indv.append({
+                'indiv_name': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_name,
+                'indiv_lastname': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_lastname,
+                'afil_id':afiliado.id
+            })
+    #creo el contexto
+    contexto = {
+        'partido':partido,
+        'procesos':lista_pro,
+        'afiliados':lista_indv
+    }
+    return render(request, 'app/ImplicarIndi.html', contexto)
 
+def ImplicarIndi_post(request):
+    #obtengo los datos del formulario
+    afiliado_id = request.POST['afil_id']
+    proceso_id = request.POST['pro_id']
+    date_imp = request.POST['date_imp']
+    charges = request.POST['charges']
+    guilty = request.POST['guilty']
+    sentence = request.POST['sentence']
+    commnts = request.POST['commnts']
+
+    print("proceso",proceso_id)
+    print("afiliado",afiliado_id)
+    print("guilty",type(guilty))
+
+    i=Implicado()
+
+    i.afiliado_id=afiliado_id
+    i.proceso_id=proceso_id
+
+    if guilty == "true":
+        i.guilty=True
+    else:
+        i.guilty=False
+
+    if date_imp:
+        i.date_imp=date_imp
+    if charges:
+        i.charges=charges
+    if sentence:
+        i.sentence=sentence
+    if commnts:
+        i.commnts=commnts
+    i.save()
+    return redirect('app:consPart_view')
