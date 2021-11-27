@@ -33,8 +33,8 @@
                 </thead>
                 {% for individuo in lista_indv %}
                     <tr>
-                        <td>{{individuo.indiv_lastname}}</td>     
-                        <td>{{individuo.indiv_name}}</td>
+                        <td><a href="{% url 'app:consAIndiv_view' individuo.indiv_id %}">{{individuo.indiv_lastname}}</a></td>
+                        <td><a href="{% url 'app:consAIndiv_view' individuo.indiv_id %}">{{individuo.indiv_name}}</a></td>     
                         {% if individuo.date_in %}
                             <td>{{individuo.date_in}}</td>     
                         {% else %}

@@ -172,13 +172,13 @@ def consAPart_view(request,id):
                 'date_in': afiliado.date_in,
                 'date_out': afiliado.date_out,
                 'indiv_name': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_name,
-                'indiv_lastname': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_lastname
+                'indiv_lastname': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_lastname,
+                'indiv_id':afiliado.indiv_id_id
             })
     contexto = {
         'info':partido,
         'lista_indv':lista_indv
     }
-    print(lista_indv)
     #aumento el numero de vistas
     partido.views = partido.views + 1
     #guardo los cambios

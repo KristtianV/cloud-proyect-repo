@@ -69,3 +69,25 @@ class Afiliacion(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     class Meta:
         app_label: 'app'
+
+class Implicado(models.Model):
+    date_imp = models.DateField(null= True, blank=True)
+    charges = models.DateField(null= True, blank=True)
+    guilty = models.BooleanField(null=True)
+    sentence = models.CharField(max_length=45 , null= True)
+    commnts = models.CharField(max_length=45 , null= True)
+    afiliado = models.ForeignKey(#llave foranea
+        Afiliacion,#clase a la cual esta apuntando la llave
+        related_name= 'indiv_impl',
+        null=False,
+        on_delete=models.PROTECT,
+    )
+    proceso = models.ForeignKey(#llave foranea
+        Proceso,#clase a la cual esta apuntando la llave
+        related_name= 'proceso_impl',
+        null=False,
+        on_delete=models.PROTECT,
+    )
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        app_label: 'app'
