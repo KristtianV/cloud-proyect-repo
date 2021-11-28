@@ -168,7 +168,7 @@ def consPart_view(request):
             #obtengo la lista de implicados de cada afiliacion
             lista_impl=Implicado.objects.filter(afiliado_id=afil.id)
             cont=cont+len(lista_impl)
-        print(part, cont)
+        
         lista.append({
             'partido':part,
             'how':cont
@@ -196,7 +196,24 @@ def consAPart_view(request,id):
                 'indiv_lastname': Individuo.objects.get(id=afiliado.indiv_id_id).indiv_lastname,
                 'indiv_id':afiliado.indiv_id_id
             })
+
+    #inicio contadores
+        cont=0
+        cont_c=0
+    #obtengo lista de afiliacions del partido
+    lista_afil=Afiliacion.objects.filter(part_id_id=id)
+    #recorro las afiliaciones
+    for afil in lista_afil:
+        #obtengo la lista de implicados de cada afiliacion
+        lista_impl=Implicado.objects.filter(afiliado_id=afil.id)
+        cont=cont+len(lista_impl)
+        for impl in lista_impl:
+            if impl.guilty == 1:
+                cont_c=cont_c+1
+    print(cont_c)
     contexto = {
+        'procesos':cont,
+        'procesos_c':cont_c,
         'info':partido,
         'lista_indv':lista_indv
     }
