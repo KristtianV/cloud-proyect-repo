@@ -29,7 +29,9 @@
                     <label for="">Proceso</label>
                     <select name="pro_id" id="pro_id">
                         {% for proceso in procesos %}
+                            {% if proceso.active == 1 %}
                             <option label="{{proceso.title}}">{{proceso.id}}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
                     <fieldset>

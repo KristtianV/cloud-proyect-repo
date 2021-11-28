@@ -19,11 +19,13 @@
             <div class="forms">
                 <form action="{% url 'app:afilIndi_post' %}" method="post" id="form-log" class="form">
                     {% csrf_token %} 
+
                    <select name="part_id" id="part_id">
                     {% for partido in partidos %}
                         <option label="{{partido.nameP}}">{{partido.id}}</option>
                     {% endfor %}
                    </select>
+                   
                    <fieldset>
                         <label for="">Fecha de Ingreso</label>
                         <input type="date" name="date_in" id="date_in">

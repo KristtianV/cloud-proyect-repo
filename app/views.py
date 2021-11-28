@@ -151,9 +151,30 @@ def creaPart_post(request):
 #CONSULTAR LISTA DE PARTIDOS
 @login_required
 def consPart_view(request):
-    lista = Partido.objects.all()
+    lista_afil=[]
+    lista_impl=[]
+    lista=[]
+    # Obtengo el parido
+    lista_part = Partido.objects.all()
+    # Recorro la lista de partidos
+    for part in lista_part:
+        #inicio contador
+        cont=0
+        #obtengo lista de afiliacions del partido
+        lista_afil=Afiliacion.objects.filter(part_id_id=part.id)
+        #recorro las afiliaciones
+        for afil in lista_afil:
+            print(afil)
+            #obtengo la lista de implicados de cada afiliacion
+            lista_impl=Implicado.objects.filter(afiliado_id=afil.id)
+            cont=cont+len(lista_impl)
+        print(part, cont)
+        lista.append({
+            'partido':part,
+            'how':cont
+        })
     contexto = {
-        'partidos':lista 
+        'lista':lista,
     }
     return render(request, 'app/consPart.html', contexto)
 
@@ -254,11 +275,12 @@ def consIndiv_view(request):
 #CONSULTAR UN INDIVIDUO
 @login_required
 def consAIndiv_view(request,id):
-    lista_afil=[]
+    lista_impl=[]
     if Afiliacion.objects.filter(indiv_id_id=id).exists():
         if Afiliacion.objects.get(indiv_id_id=id).active==True:
             afiliacion =  Afiliacion.objects.get(indiv_id_id=id)
             partido = Partido.objects.get(id=afiliacion.part_id_id)
+            print(".....",afiliacion.id)
         else:
             afiliacion={}
             partido={}
@@ -425,6 +447,8 @@ def aproPro_post(request):
 
 #CONSULTAR UN PROCESO
 def consApro_view(request,id):
+    lista_afil=[]
+    lista=[]
     #obtengo el proceso
     proceso = Proceso.objects.get(id=id)
     #aumento el numero de vistas
@@ -432,8 +456,31 @@ def consApro_view(request,id):
     #guardo los cambios
     proceso.save()
     #creo el contexto
+    list_impl=Implicado.objects.filter(proceso_id=id)
+    for impl in list_impl:
+        lista_afil.append(Afiliacion.objects.get(id=impl.afiliado_id))
+        for afil in lista_afil:
+            indiv=Individuo.objects.get(id=afil.indiv_id_id)
+            part=Partido.objects.get(id=afil.part_id_id)
+            if impl.guilty == True:
+                guilty = "Culpable"
+            else:
+                guilty = "Inocente"
+            
+        lista.append({
+            'name':indiv.indiv_name,
+            'lastname':indiv.indiv_lastname,
+            'part':part.nameP,
+            'date_imp':impl.date_imp,
+            'charge':impl.charges,
+            'guilty':guilty,
+            'sentence':impl.sentence,
+            'commnts':impl.commnts
+        })
+        print(lista)
     contexto = {
-        'info':proceso 
+        'info':proceso,
+        'lista':lista
     }
     return render(request, 'app/consApro.html', contexto)
 
@@ -471,9 +518,8 @@ def ImplicarIndi_post(request):
     sentence = request.POST['sentence']
     commnts = request.POST['commnts']
 
-    print("proceso",proceso_id)
-    print("afiliado",afiliado_id)
-    print("guilty",type(guilty))
+
+    print("date",date_imp)
 
     i=Implicado()
 

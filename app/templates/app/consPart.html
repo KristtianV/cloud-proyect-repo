@@ -20,10 +20,11 @@
                         <th>Nombre</th><th>Cantidad de visitas</th><th>Cantidad de procesos</th>
                     </tr>
                 </thead>
-                    {% for partido in partidos %}
+                    {% for dato in lista %}
                         <tr>
-                            <td><a href="{% url 'app:consAPart_view' partido.id %}">{{ partido.nameP}}</a></td>
-                            <td>{{partido.views}}</td><td>Procesos</td>
+                            <td><a href="{% url 'app:consAPart_view' dato.partido.id %}">{{ dato.partido.nameP}}</a></td>
+                            <td>{{dato.partido.views}}</td>
+                            <td>{{dato.how}}</td>
                         </tr>               
                     {% endfor %}
             </table>

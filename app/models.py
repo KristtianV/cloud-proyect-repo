@@ -72,7 +72,7 @@ class Afiliacion(models.Model):
 
 class Implicado(models.Model):
     date_imp = models.DateField(null= True, blank=True)
-    charges = models.DateField(null= True, blank=True)
+    charges = models.CharField(max_length=45 , null= True)
     guilty = models.BooleanField(null=True)
     sentence = models.CharField(max_length=45 , null= True)
     commnts = models.CharField(max_length=45 , null= True)
