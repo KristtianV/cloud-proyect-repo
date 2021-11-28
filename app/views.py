@@ -297,17 +297,25 @@ def consIndiv_view(request):
 @login_required
 def consAIndiv_view(request,id):
     lista_impl=[]
+    lista=[]
     if Afiliacion.objects.filter(indiv_id_id=id).exists():
         if Afiliacion.objects.get(indiv_id_id=id).active==True:
             afiliacion =  Afiliacion.objects.get(indiv_id_id=id)
             partido = Partido.objects.get(id=afiliacion.part_id_id)
-            print(".....",afiliacion.id)
+            lista_impl=Implicado.objects.filter(afiliado=afiliacion.id)
+            for impl in lista_impl:
+                pro=Proceso.objects.get(id=impl.proceso_id)
+                lista.append({
+                    'impl':impl,
+                    'pro':pro
+                })
         else:
             afiliacion={}
             partido={}
     else:
         afiliacion={}
         partido={}
+
     #obtengo el individuo
     individuo = Individuo.objects.get(id=id)
     #aumento el numero de vistas
@@ -318,7 +326,8 @@ def consAIndiv_view(request,id):
     contexto = {
         'info':individuo,
         'afil': afiliacion,
-        'part':  partido
+        'part':  partido,
+        'lista': lista,
     }
     return render(request, 'app/consAIndiv.html', contexto)
 

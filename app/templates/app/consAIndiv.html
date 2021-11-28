@@ -42,7 +42,19 @@
                 </thead>
                         <tr>
                             {% if part.id %}
-                                <td><a href="{% url 'app:consAPart_view' part.id %}">{{ part.nameP }}</a></td><td>{{afil.date_in}}</td><td>{{afil.date_out}}</td>
+                                <td><a href="{% url 'app:consAPart_view' part.id %}">{{ part.nameP }}</a></td>
+                                {% if afil.date_in %}
+                                    <td>{{afil.date_in}}</td>
+                                {% else %}
+                                    <td>Sin datos</td>
+                                {% endif %}
+
+                                {% if afil.date_out %}
+                                <td>{{afil.date_out}}</td>
+                                {% else %}
+                                    <td>Sin datos</td>
+                                {% endif %}
+
                             {% else %}
                             <td>Sin afiliaciones</td><td>Sin datos</td><td>Sin datos</td>
                             {% endif %}
@@ -52,12 +64,34 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Fecha inicio del proceso</th><th>Fecha fin del proceso</th><th>Titulo del proceso</th><th>Entidad</th><th>Monto</th><th>Comentarios proceso</th><th>Abierto/Cerrado</th><th>Acusacion</th><th>Culpable/Inocente</th><th>Comentarios implicacion</th>
+                        <th>Fecha inicio del proceso</th>
+                        <th>Fecha fin del proceso</th>
+                        <th>Titulo del proceso</th>
+                        <th>Entidad</th>
+                        <th>Monto</th>
+                        <th>Comentarios proceso</th>
+                        <th>Abierto/Cerrado</th>
+                        <th>Acusacion</th>
+                        <th>Culpable/Inocente</th>
+                        <th>Pena</th>
+                        <th>Comentarios Implicacion</th>
                     </tr>
                 </thead>
+                        {% for dato in lista %}
                         <tr>
-                            <td>Apellidos</td><td>Nombres</td><td>fecha de ingreso</td><td>fecha de salida</td>
-                        </tr>               
+                            <td><a href="{% url 'app:consApro_view' dato.pro.id %}">{{dato.pro.title}}</a></td>
+                            <td>{{dato.pro.date_start}}</td>
+                            <td>{{dato.pro.date_end}}</td>
+                            <td>{{dato.pro.entity}}</td>
+                            <td>{{dato.pro.howmuch}}</td>
+                            <td>{{dato.pro.comments}}</td>
+                            <td>{{dato.pro.state}}</td>
+                            <td>{{dato.impl.charges}}</td>
+                            <td>{{dato.impl.guilty}}</td>
+                            <td>{{dato.impl.sentence}}</td>
+                            <td>{{dato.impl.commnts}}</td>
+                        </tr>
+                        {% endfor %}                
             </table>
             <div class="btn-container">
                 <button class="cons-Btn"><a href="{% url 'app:afilIndi_view' info.id %}">Afiliar individuo un partido</a></button>
