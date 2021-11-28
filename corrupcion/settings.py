@@ -76,10 +76,21 @@ WSGI_APPLICATION = 'corrupcion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE':'django.db.backends.postgresql',
+        'NAME': 'corrupcion',
+        'USER':'postgres1',
+        'PASSWORD':'postgres4167',
+        'HOST':'server-cloud.cv7wvodt1nmu.us-east-2.rds.amazonaws.com',
+        'PORT':'5432'
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # Password validation
