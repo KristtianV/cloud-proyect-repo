@@ -164,7 +164,6 @@ def consPart_view(request):
         lista_afil=Afiliacion.objects.filter(part_id_id=part.id)
         #recorro las afiliaciones
         for afil in lista_afil:
-            print(afil)
             #obtengo la lista de implicados de cada afiliacion
             lista_impl=Implicado.objects.filter(afiliado_id=afil.id)
             cont=cont+len(lista_impl)
@@ -266,6 +265,7 @@ def consIndiv_view(request):
         lista = Individuo.objects.filter(active=1)
     
     for individuo in lista:
+        cont=0
         if Afiliacion.objects.filter(indiv_id_id=individuo.id).exists():
             part= Afiliacion.objects.get(indiv_id_id=individuo.id)
             if part.active == 1:
@@ -273,15 +273,19 @@ def consIndiv_view(request):
                 partido = Partido.objects.get(id=id_part).nameP
             else:
                 partido= "Sin Afiliacion"
+            lista_impl=Implicado.objects.filter(afiliado_id=part.id)
+            cont=cont+len(lista_impl)
+            print(cont)
         else:
             partido= "Sin Afiliacion"
-        
+            
         lista_indv.append({
             'id': individuo.id,
             'indiv_name':individuo.indiv_name,
             'indiv_lastname':individuo.indiv_lastname,
             'active':individuo.active,
-            'lastPart': partido
+            'lastPart': partido,
+            'pro':cont
         })
 
     contexto = {

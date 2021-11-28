@@ -33,7 +33,7 @@
                     <td><a href="{% url 'app:consAIndiv_view' individuo.id %}">{{ individuo.indiv_name }}</a></td>
                     <td><a href="{% url 'app:consAIndiv_view' individuo.id %}">{{ individuo.indiv_lastname }}</a></td>
                     <td>{{individuo.lastPart}}</td>
-                    <td>Procesos</td>
+                    <td>{{individuo.pro}}</td>
                     {% if request.user.is_superuser == 1 %}
                         <td>
                             {% if individuo.active == 0 %}
