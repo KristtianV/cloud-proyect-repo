@@ -1,29 +1,12 @@
-# README #
+# CLOUD SOLUTIONS ARCHITECTURE PROJECT#
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Repository for a project with Django and PostgreSQL, where records of acts of government corruption are kept.
 
-### What is this repository for? ###
+### Technologies ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+django
+JavaScript
+PostgreSQL
 
-### How do I get set up? ###
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+* Cristian Alexander Vega Mosquera
